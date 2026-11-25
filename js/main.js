@@ -153,12 +153,16 @@ function renderPortfolio() {
   swan.id = "swan";
   swan.setAttribute("role", "img");
   swan.setAttribute("aria-label", "A swan swimming");
-  footer.append(swan);
+  const note = document.createElement("p");
+  note.className = "colophon";
+  note.textContent = "Site made with Cursor. The projects listed here are my own work.";
+  footer.append(swan, note);
 
   page.append(header, main, footer);
   window.mountOwl(owl, "owl1.jpg");
   window.mountButterflies(document.getElementById("butterflies"));
   window.mountSwan(swan, footer);
+  window.mountJaguar(document.getElementById("jaguar"));
   markReading();
   window.addEventListener("scroll", markReading, { passive: true });
 }

@@ -225,12 +225,31 @@ a:focus-visible {
   margin-top: 30vh;
 }
 
+.colophon {
+  margin: 0;
+  padding: 12vh 0 1.5vh;
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
 #swan {
   position: absolute;
   left: 0;
   width: 100%;
   height: 38vh;
   bottom: calc(100% - 8vh);
+  pointer-events: none;
+}
+
+#jaguar {
+  position: fixed;
+  top: 8vh;
+  right: 1.2vw;
+  width: min(39vw, 540px);
+  height: min(84vh, 840px);
+  z-index: 3;
   pointer-events: none;
 }
 
@@ -255,10 +274,14 @@ a:focus-visible {
 
   .footer { margin-top: 22vh; min-height: 16vh; }
 
+  .colophon { padding-top: 9vh; font-size: 0.8rem; }
+
   #swan {
     height: 32vh;
     bottom: calc(100% - 7vh);
   }
+
+  #jaguar { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
