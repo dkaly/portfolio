@@ -156,7 +156,11 @@ function renderPortfolio() {
   const note = document.createElement("p");
   note.className = "colophon";
   note.textContent = "Site made with Cursor. The projects listed here are my own work.";
-  footer.append(swan, note);
+  const art = document.createElement("p");
+  art.className = "colophon";
+  art.textContent =
+    "The animals are colored ASCII art, not embedded video. Short clips are recreated frame by frame into a character grid; scroll and pointer input choose which frame you see.";
+  footer.append(swan, note, art);
 
   page.append(header, main, footer);
   window.mountOwl(owl, "owl1.jpg");

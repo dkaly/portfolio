@@ -227,11 +227,23 @@ a:focus-visible {
 
 .colophon {
   margin: 0;
-  padding: 12vh 0 1.5vh;
+  padding: 0;
   max-width: 36rem;
   color: var(--muted);
   font-size: 0.84rem;
   line-height: 1.45;
+}
+
+.footer .colophon:first-of-type {
+  padding-top: 12vh;
+}
+
+.colophon + .colophon {
+  margin-top: 0.75rem;
+}
+
+.footer .colophon:last-of-type {
+  padding-bottom: 1.5vh;
 }
 
 #swan {
@@ -274,7 +286,9 @@ a:focus-visible {
 
   .footer { margin-top: 22vh; min-height: 16vh; }
 
-  .colophon { padding-top: 9vh; font-size: 0.8rem; }
+  .footer .colophon:first-of-type { padding-top: 9vh; }
+
+  .colophon { font-size: 0.8rem; }
 
   #swan {
     height: 32vh;
