@@ -37,6 +37,47 @@ function externalLink(href) {
   return /^https?:/i.test(href);
 }
 
+function copyEmailControl(link) {
+  const email = (link.href || "").replace(/^mailto:/i, "").split("?")[0];
+  const idle = link.label || "Email";
+  const copied = "Email copied to clipboard";
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "copy-email";
+  button.textContent = idle;
+  button.setAttribute("aria-label", "Copy email address");
+  const live = document.createElement("span");
+  live.className = "sr-only";
+  live.setAttribute("aria-live", "polite");
+  let timer = 0;
+
+  function showCopied() {
+    button.textContent = copied;
+    button.classList.add("is-copied");
+    live.textContent = copied;
+    if (timer) window.clearTimeout(timer);
+    timer = window.setTimeout(function () {
+      button.textContent = idle;
+      button.classList.remove("is-copied");
+      live.textContent = "";
+      timer = 0;
+    }, 2200);
+  }
+
+  button.addEventListener("click", function () {
+    const write = navigator.clipboard && navigator.clipboard.writeText
+      ? navigator.clipboard.writeText(email)
+      : Promise.reject();
+    write.then(showCopied).catch(function () {
+      window.location.href = link.href;
+    });
+  });
+
+  const wrap = document.createDocumentFragment();
+  wrap.append(button, live);
+  return wrap;
+}
+
 function renderPortfolio() {
   const data = window.PORTFOLIO;
   const page = document.getElementById("page");
@@ -77,14 +118,18 @@ function renderPortfolio() {
     list.className = "links";
     links.forEach(function (link) {
       const item = document.createElement("li");
-      const anchor = document.createElement("a");
-      anchor.href = link.href;
-      anchor.textContent = link.label;
-      if (externalLink(link.href)) {
-        anchor.target = "_blank";
-        anchor.rel = "noreferrer";
+      if (/^mailto:/i.test(link.href)) {
+        item.append(copyEmailControl(link));
+      } else {
+        const anchor = document.createElement("a");
+        anchor.href = link.href;
+        anchor.textContent = link.label;
+        if (externalLink(link.href)) {
+          anchor.target = "_blank";
+          anchor.rel = "noreferrer";
+        }
+        item.append(anchor);
       }
-      item.append(anchor);
       list.append(item);
     });
     copy.append(list);
