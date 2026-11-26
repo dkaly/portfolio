@@ -108,7 +108,7 @@ window.PORTFOLIO = {
       nodes: [
         {
           title: "Studies",
-          summary: "Software engineering student.",
+          summary: "Computer science student.",
           stack: "",
           href: "",
           media: null,
