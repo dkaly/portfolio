@@ -83,13 +83,13 @@ window.PORTFOLIO = {
       ],
     },
     {
-      id: "ascii",
-      label: "ASCII",
+      id: "other",
+      label: "Other projects",
       nodes: [
         {
           title: "Image to ASCII",
-          summary: "Converts an image into colored ASCII art.",
-          stack: "",
+          summary: "OpenCV turns an image grayscale, then each pixel’s brightness maps to a character so the picture reads as ASCII text.",
+          stack: "Python · OpenCV",
           href: "",
           media: null,
         },
